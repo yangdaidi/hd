@@ -1,0 +1,23 @@
+{
+  "name": "hd",
+  "version": "1.0.0",
+  "description": "first git node project",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yangdaidi/hd.git"
+  },
+  "author": "yangdaidi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yangdaidi/hd/issues"
+  },
+  "homepage": "https://github.com/yangdaidi/hd#readme",
+  "devDependencies": {
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.14.1"
+  }
+}
