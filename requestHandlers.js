@@ -298,6 +298,70 @@ function show(response) {
   });
 }
 
+
+function filetest(response) {
+  fs.stat('/tmp',function(err,stats){
+    if(err){
+      throw err;
+    }
+    console.log(stats);
+    console.log("stats.isFile:"+stats.isFile());
+    console.log("stats.isDirectory:"+stats.isDirectory());
+    console.log("stats.isBlockDevice:"+stats.isBlockDevice());
+    console.log("stats.isCharacterDevice:"+stats.isCharacterDevice());
+    console.log("stats.isSymbolicLink:"+stats.isSymbolicLink());
+    // console.log("stats.isFifo:"+stats.isFifo());   //貌似最新不支持
+    console.log("stats.isSocket:"+stats.isSocket());
+  });
+  // 文件读写
+  fs.open('./tmp/test.txt','r',function opened(err,fd){
+    if(err) { throw err;  }
+    var readBuffer = new Buffer(1024);
+    var bufferOffset = 0;
+    var bufferLength = readBuffer.length;
+    var filePosition = 100;
+    fs.read(fd,readBuffer,bufferOffset,bufferLength,filePosition,function read(err,readBytes){
+      if(err) {throw err;}
+      console.log('just read'+readBytes + 'bytes');
+      if(readBytes>0){
+        console.log(readBuffer.slice(0,readBytes));
+      }
+    });
+  });
+}
+// exec 与 spawn  
+// 
+// child_process.exec方法是“同步中的异步”，意思是尽管exec是异步的，
+// 它一定要等到子进程运行结束以后然后一次性返回所有的buffer数据。
+// 如果exec的buffer体积设置的不够大，它将会以一个“maxBuffer exceeded”错误失败告终。 
+// 
+// 
+// child_process.spawn方法是“异步中的异步”，意思是在子进程开始执行时，
+// 它就开始从一个流总将数据从子进程返回给Node。
+
+
+function child(response){
+  // exec("cat * | wc -l ", function (err, stdout, stderr) {
+  //   if(err) {throw err;}
+  //   console.log(stdout);
+  // });
+  exec("ls", function (err, stdout, stderr) {
+    if(err) {throw err;}
+    console.log(stdout);
+  });
+}
+
+var spawn = require("child_process").spawn;
+var children  = spawn('node',['plus_one.js']);
+
+function childtest(response){
+  
+}
+
+exports.childtest = childtest;
+exports.filetest = filetest;
+exports.child = child;
+
 exports.start = start;
 exports.upload = upload;
 exports.show = show;

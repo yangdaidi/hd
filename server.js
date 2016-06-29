@@ -1,4 +1,4 @@
-// var formidable = require("formidable");//文件上传 node-formidable模块(安装npm install fromidable)
+// var formidable = require("formidable");//文件上传 node-formidable模块(安装npm install fromidable) [--save]
 var http = require("http");
 var url = require("url");
 
