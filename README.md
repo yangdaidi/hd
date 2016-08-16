@@ -36,6 +36,7 @@ running
 For more information about running weinre, you can start the server
 and browse the documentation online.
 
+
 Start the server with the following command
 
     node weinre
